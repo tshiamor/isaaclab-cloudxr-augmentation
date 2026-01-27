@@ -55,14 +55,14 @@ echo ""
 
 # ---- Step 1: Install system dependencies + conda ----
 echo "[Step 1/7] Installing system dependencies..."
-sudo apt-get update -qq
-sudo apt-get install -y -qq git git-lfs curl ffmpeg wget > /dev/null 2>&1
+sudo apt-get update -qq || echo "  Warning: apt-get update had errors (non-critical, continuing)"
+sudo apt-get install -y -qq git git-lfs curl ffmpeg wget > /dev/null 2>&1 || true
 git lfs install
 
 # Install Docker if not present
 if ! command -v docker &>/dev/null; then
     echo "  Installing Docker..."
-    sudo apt-get install -y -qq docker.io > /dev/null 2>&1
+    sudo apt-get install -y -qq docker.io > /dev/null 2>&1 || true
 fi
 
 # Install Miniconda if no usable python/pip is available
@@ -112,10 +112,10 @@ if ! sudo docker info 2>/dev/null | grep -q "nvidia"; then
     curl -s -L "https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list" | \
         sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
         sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list > /dev/null
-    sudo apt-get update -qq
-    sudo apt-get install -y -qq nvidia-container-toolkit > /dev/null 2>&1
-    sudo nvidia-ctk runtime configure --runtime=docker
-    sudo systemctl restart docker
+    sudo apt-get update -qq || true
+    sudo apt-get install -y -qq nvidia-container-toolkit > /dev/null 2>&1 || true
+    sudo nvidia-ctk runtime configure --runtime=docker || true
+    sudo systemctl restart docker || true
 fi
 
 # ---- Step 2: Clone Cosmos-Transfer2.5 ----
