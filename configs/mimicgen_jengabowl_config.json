@@ -1,0 +1,52 @@
+{
+    "name": "jengabowl_pick_place",
+    "task_name": "FrankaJengaBowl",
+    "dataset_path": "/home/tshiamo/simulations/franka/isaaclab_cloudxr/datasets/jengabowl_visuomotor_demos.hdf5",
+    "output_path": "/home/tshiamo/simulations/franka/isaaclab_cloudxr/datasets/jengabowl_mimicgen_augmented.hdf5",
+
+    "num_demos_to_generate": 500,
+    "num_source_demos": 13,
+
+    "task_spec": {
+        "object_names": ["block"],
+        "target_names": ["bowl"],
+        "robot_name": "robot",
+
+        "subtasks": [
+            {
+                "name": "reach",
+                "selection_strategy": "nearest",
+                "selection_strategy_kwargs": {},
+                "object_ref": "block"
+            },
+            {
+                "name": "grasp",
+                "selection_strategy": "nearest",
+                "selection_strategy_kwargs": {},
+                "object_ref": "block"
+            },
+            {
+                "name": "transport",
+                "selection_strategy": "nearest",
+                "selection_strategy_kwargs": {},
+                "object_ref": "bowl",
+                "waypoint_spacing": 10
+            },
+            {
+                "name": "place",
+                "selection_strategy": "nearest",
+                "selection_strategy_kwargs": {},
+                "object_ref": "bowl"
+            }
+        ]
+    },
+
+    "data_generation": {
+        "randomize_object_poses": true,
+        "object_pose_noise_std": 0.05,
+        "randomize_target_poses": true,
+        "target_pose_noise_std": 0.03,
+        "success_rate_threshold": 0.8,
+        "max_attempts_per_demo": 10
+    }
+}
