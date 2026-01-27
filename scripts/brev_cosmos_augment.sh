@@ -67,13 +67,17 @@ fi
 
 # Install Miniconda if no usable python/pip is available
 if ! command -v conda &>/dev/null; then
-    echo "  Installing Miniconda..."
-    CONDA_INSTALLER="/tmp/Miniconda3-latest-Linux-x86_64.sh"
-    if [ ! -f "${CONDA_INSTALLER}" ]; then
-        wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "${CONDA_INSTALLER}"
+    if [ -d "${HOME}/miniconda3" ]; then
+        echo "  Miniconda directory exists, activating..."
+    else
+        echo "  Installing Miniconda..."
+        CONDA_INSTALLER="/tmp/Miniconda3-latest-Linux-x86_64.sh"
+        if [ ! -f "${CONDA_INSTALLER}" ]; then
+            wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "${CONDA_INSTALLER}"
+        fi
+        bash "${CONDA_INSTALLER}" -b -p "${HOME}/miniconda3"
+        echo "  Miniconda installed to ${HOME}/miniconda3"
     fi
-    bash "${CONDA_INSTALLER}" -b -p "${HOME}/miniconda3"
-    echo "  Miniconda installed to ${HOME}/miniconda3"
 fi
 
 # Activate conda in current shell
