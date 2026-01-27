@@ -174,6 +174,31 @@ sudo docker build -f "${DOCKERFILE}" -t cosmos-transfer2.5 . 2>&1 | tail -5
 
 echo "  Docker image built."
 
+# ---- Step 4b: Verify HuggingFace access to gated model ----
+echo "  Verifying access to nvidia/Cosmos-Transfer2.5-2B..."
+${PYTHON_CMD} - <<'CHECKEOF'
+import os, sys
+from huggingface_hub import HfApi
+api = HfApi()
+try:
+    info = api.model_info("nvidia/Cosmos-Transfer2.5-2B", token=os.environ.get("HF_TOKEN"))
+    print(f"  OK: Access granted to {info.id}")
+except Exception as e:
+    print(f"\n  ERROR: Cannot access nvidia/Cosmos-Transfer2.5-2B")
+    print(f"  {e}")
+    print(f"\n  You need to accept the license at:")
+    print(f"    https://huggingface.co/nvidia/Cosmos-Transfer2.5-2B")
+    print(f"  Then re-run this script.")
+    sys.exit(1)
+CHECKEOF
+
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "ABORTING: HuggingFace model access denied."
+    echo "Go to https://huggingface.co/nvidia/Cosmos-Transfer2.5-2B and accept the license."
+    exit 1
+fi
+
 # ---- Step 5: Create augmentation script inside workspace ----
 echo "[Step 5/7] Preparing augmentation script..."
 
@@ -337,11 +362,13 @@ sudo docker run --rm \
     -v "${WORK_DIR}/run_augmentation.py":/data/run_augmentation.py:ro \
     -v "${HOME}/.cache":/root/.cache \
     -e HF_TOKEN="${HF_TOKEN}" \
+    -e HUGGING_FACE_HUB_TOKEN="${HF_TOKEN}" \
+    -e HF_HOME="/root/.cache/huggingface" \
     -e INPUT_DIR=/data/input \
     -e OUTPUT_DIR=/data/output \
     -e NUM_AUGMENTATIONS="${NUM_AUGMENTATIONS}" \
     cosmos-transfer2.5 \
-    python3 /data/run_augmentation.py
+    bash -c "huggingface-cli login --token \${HF_TOKEN} 2>/dev/null || true; python3 /data/run_augmentation.py"
 
 echo "  Augmentation complete."
 echo "  Output videos: $(ls "${OUTPUT_DIR}/videos/" 2>/dev/null | wc -l)"
