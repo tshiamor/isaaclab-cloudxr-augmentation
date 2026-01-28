@@ -2,76 +2,6 @@
 
 External Isaac Lab project for VR hand tracking data collection and vision-based imitation learning with the Franka Panda robot.
 
-## 🎯 Quick Start
-
-**Recommended Path: Vision-Based Learning with Isaac Lab Mimic** ⭐
-
-1. **[Collect VR Demos](CAMERA_RECORDING_GUIDE.md)** → 49 demos with camera data ✅ DONE
-2. **[Annotate Demos](PLAYBACK_AND_ANNOTATION_GUIDE.md)** → Add subtask annotations ← **YOU ARE HERE**
-3. **[Generate Dataset](ISAACLAB_MIMIC_WORKFLOW.md)** → 49 → 1000+ augmented demos
-4. **[Train Policy](ISAACLAB_MIMIC_WORKFLOW.md#step-3-train-vision-based-policy-with-robomimic)** → Vision-based behavior cloning
-5. **[Deploy & Evaluate](ISAACLAB_MIMIC_WORKFLOW.md#step-4-evaluate-trained-policy)** → 75-86% success rate
-
----
-
-## 📚 Documentation Index
-
-### 🚀 Getting Started
-
-| Guide | Description | When to Use |
-|-------|-------------|-------------|
-| **[QUICKSTART.md](QUICKSTART.md)** | Fast setup and first demo | New to project |
-| **[QUICK_COMMANDS.md](QUICK_COMMANDS.md)** | Common commands reference | Quick lookup |
-| **[VR_HANDTRACKING_GUIDE.md](VR_HANDTRACKING_GUIDE.md)** | VR setup and teleoperation | Setting up VR |
-
-### 🎓 Vision-Based Learning Pipeline (RECOMMENDED)
-
-| Guide | Description | Status |
-|-------|-------------|--------|
-| **[ISAACLAB_MIMIC_WORKFLOW.md](ISAACLAB_MIMIC_WORKFLOW.md)** | Complete Mimic pipeline (annotation → augmentation → training) | ⭐ **START HERE** |
-| **[PLAYBACK_AND_ANNOTATION_GUIDE.md](PLAYBACK_AND_ANNOTATION_GUIDE.md)** | Replay demos and annotate subtasks | **Current Step** |
-| **[CAMERA_RECORDING_GUIDE.md](CAMERA_RECORDING_GUIDE.md)** | Record demos WITH camera observations | ✅ Completed |
-| **[VISION_BASED_PIPELINE.md](VISION_BASED_PIPELINE.md)** | Overview of vision-based learning | Background |
-| **[NEXT_STEPS.md](NEXT_STEPS.md)** | What to do after data collection | Planning |
-
-### 🎮 Data Collection
-
-| Guide | Description | When to Use |
-|-------|-------------|-------------|
-| **[CAMERA_RECORDING_GUIDE.md](CAMERA_RECORDING_GUIDE.md)** | Record demos with wrist + external cameras | Vision-based learning |
-| **[VR_HANDTRACKING_GUIDE.md](VR_HANDTRACKING_GUIDE.md)** | VR hand tracking setup and controls | VR teleoperation |
-| **[VISUOMOTOR_TASK_DOCUMENTATION.md](VISUOMOTOR_TASK_DOCUMENTATION.md)** | Environment config for camera tasks | Technical reference |
-
-### 🤖 Reinforcement Learning (Alternative Path)
-
-| Guide | Description | Status |
-|-------|-------------|--------|
-| **[RL_QUICKSTART.md](RL_QUICKSTART.md)** | Fast RL training setup | Alternative to Mimic |
-| **[RL_TRAINING_GUIDE.md](RL_TRAINING_GUIDE.md)** | Detailed RL training guide | For RL users |
-| **[RL_SETUP_COMPLETE.md](RL_SETUP_COMPLETE.md)** | RL environment setup confirmation | Setup verification |
-| **[TRAINING_ANALYSIS.md](TRAINING_ANALYSIS.md)** | Training performance analysis | Post-training |
-
-### 🔧 Troubleshooting & Fixes
-
-| Category | Guides | Description |
-|----------|--------|-------------|
-| **VR Issues** | [VR_HANDTRACKING_FIX.md](VR_HANDTRACKING_FIX.md) | VR connection and tracking fixes |
-| **Camera Issues** | [CAMERA_FIX.md](CAMERA_FIX.md), [HDF5_EXPORT_FIX.md](HDF5_EXPORT_FIX.md) | Camera recording and export fixes |
-| **Recording Issues** | [DEMO_COUNTING_AND_DEBUG_FIX.md](DEMO_COUNTING_AND_DEBUG_FIX.md), [PAUSE_PLAY_TERMINATION_FIX.md](PAUSE_PLAY_TERMINATION_FIX.md) | Demo recording fixes |
-| **Environment Issues** | [BOWL_POSITION_ORIENTATION_FIX.md](BOWL_POSITION_ORIENTATION_FIX.md), [BOWL_STATIC_ASSET_FIX.md](BOWL_STATIC_ASSET_FIX.md) | Scene setup fixes |
-| **Control Issues** | [ARM_FREEZE_IK_FIX.md](ARM_FREEZE_IK_FIX.md), [ARM_LOCK_FIX.md](ARM_LOCK_FIX.md), [CALLBACK_FREEZE_FIX.md](CALLBACK_FREEZE_FIX.md) | Robot control fixes |
-| **Code Issues** | [IMPORT_ERROR_FIX.md](IMPORT_ERROR_FIX.md), [ATTRIBUTE_ERROR_FIX.md](ATTRIBUTE_ERROR_FIX.md), [MISSING_FUNCTION_FIX.md](MISSING_FUNCTION_FIX.md) | Code and dependency fixes |
-| **Complete Fixes** | [ALL_FIXES_COMPLETE.md](ALL_FIXES_COMPLETE.md), [FINAL_FIX_COMPLETE.md](FINAL_FIX_COMPLETE.md) | Summary of all fixes |
-
-### 📖 Advanced Topics
-
-| Guide | Description | When to Use |
-|-------|-------------|-------------|
-| **[AUGMENTATION_GUIDE.md](AUGMENTATION_GUIDE.md)** | Data augmentation strategies (OLD - Use Mimic instead) | Legacy reference |
-| **[MIMICGEN_GUIDE.md](MIMICGEN_GUIDE.md)** | MimicGen comparison (explains incompatibility) | Understanding limitations |
-| **[COORDINATE_FRAME_FIX.md](COORDINATE_FRAME_FIX.md)** | Coordinate frame transformations | Advanced debugging |
-| **[TERMINATION_AND_BOWL_FIX.md](TERMINATION_AND_BOWL_FIX.md)** | Success criteria tuning | Custom task design |
-
 ---
 
 ## Table of Contents
@@ -93,12 +23,12 @@ External Isaac Lab project for VR hand tracking data collection and vision-based
 This project provides a complete setup for collecting human demonstrations using VR hand tracking with Cloud XR. The task involves controlling a Franka Panda robot to pick up a wooden block and place it in a bowl.
 
 **Key Features:**
-- ✅ Single robot environment optimized for VR hand tracking
-- ✅ Cloud XR integration for remote VR streaming
-- ✅ HDF5 demonstration recording
-- ✅ Multiple teleoperation devices (VR, keyboard, spacemouse, gamepad)
-- ✅ Automatic success detection
-- ✅ Customizable randomization and scene configuration
+- Single robot environment optimized for VR hand tracking
+- Cloud XR integration for remote VR streaming
+- HDF5 demonstration recording
+- Multiple teleoperation devices (VR, keyboard, spacemouse, gamepad)
+- Automatic success detection
+- Customizable randomization and scene configuration
 
 ---
 
@@ -114,20 +44,20 @@ This project provides a complete setup for collecting human demonstrations using
 
 ```bash
 # 1. Navigate to the project directory
-cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
+cd $HOME/simulations/franka/isaaclab_cloudxr
 
 # 2. Install the extension in editable mode
-/home/tshiamo/IsaacLab/isaaclab.sh -p -m pip install -e source/isaaclab_cloudxr
+$HOME/IsaacLab/isaaclab.sh -p -m pip install -e source/isaaclab_cloudxr
 
 # 3. Verify installation
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/list_envs.py
+$HOME/IsaacLab/isaaclab.sh -p scripts/list_envs.py
 ```
 
 ---
 
 ## Available Environments
 
-### 1. Isaac-Franka-JengaBowl-CloudXR-Single-v0 ⭐ (Recommended for VR)
+### 1. Isaac-Franka-JengaBowl-CloudXR-Single-v0 (Recommended for VR)
 
 **Single robot environment optimized for VR hand tracking**
 
@@ -162,17 +92,17 @@ cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
 ### Quick Start
 
 ```bash
-cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
+cd $HOME/simulations/franka/isaaclab_cloudxr
 
 # Run with VR hand tracking (RECOMMENDED: Use IsaacLab's built-in script)
-/home/tshiamo/IsaacLab/isaaclab.sh -p \
-    /home/tshiamo/IsaacLab/scripts/environments/teleoperation/teleop_se3_agent.py \
+$HOME/IsaacLab/isaaclab.sh -p \
+    $HOME/IsaacLab/scripts/environments/teleoperation/teleop_se3_agent.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device handtracking \
     --num_envs 1
 
 # Or use custom script (keyboard, spacemouse, gamepad only)
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
+$HOME/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device keyboard \
     --num_envs 1
@@ -182,19 +112,19 @@ cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
 
 ```bash
 # Keyboard teleoperation (for testing without VR)
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
+$HOME/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device keyboard \
     --num_envs 1
 
 # SpaceMouse
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
+$HOME/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device spacemouse \
     --num_envs 1
 
 # Gamepad
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
+$HOME/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device gamepad \
     --num_envs 1
@@ -203,8 +133,8 @@ cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
 ### Using IsaacLab's Built-in Teleoperation Script
 
 ```bash
-/home/tshiamo/IsaacLab/isaaclab.sh -p \
-    /home/tshiamo/IsaacLab/scripts/environments/teleoperation/teleop_se3_agent.py \
+$HOME/IsaacLab/isaaclab.sh -p \
+    $HOME/IsaacLab/scripts/environments/teleoperation/teleop_se3_agent.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device handtracking \
     --num_envs 1
@@ -232,11 +162,11 @@ xr.anchor_rot = (0.866, 0, 0, -0.5)   # Quaternion rotation
 ### Using IsaacLab's Built-in Recording Script (RECOMMENDED for VR)
 
 ```bash
-cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
+cd $HOME/simulations/franka/isaaclab_cloudxr
 
 # Record 50 demos with VR hand tracking
-/home/tshiamo/IsaacLab/isaaclab.sh -p \
-    /home/tshiamo/IsaacLab/scripts/tools/record_demos.py \
+$HOME/IsaacLab/isaaclab.sh -p \
+    $HOME/IsaacLab/scripts/tools/record_demos.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device handtracking \
     --dataset_file ./datasets/jengabowl_demos.hdf5 \
@@ -244,8 +174,8 @@ cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
     --step_hz 30
 
 # Record with keyboard (for testing)
-/home/tshiamo/IsaacLab/isaaclab.sh -p \
-    /home/tshiamo/IsaacLab/scripts/tools/record_demos.py \
+$HOME/IsaacLab/isaaclab.sh -p \
+    $HOME/IsaacLab/scripts/tools/record_demos.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device keyboard \
     --dataset_file ./datasets/jengabowl_demos_test.hdf5 \
@@ -255,10 +185,10 @@ cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
 ### Using the Custom Recording Script (keyboard, spacemouse, gamepad)
 
 ```bash
-cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
+cd $HOME/simulations/franka/isaaclab_cloudxr
 
 # Record with keyboard
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/record_cloudxr_demos.py \
+$HOME/IsaacLab/isaaclab.sh -p scripts/record_cloudxr_demos.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device keyboard \
     --dataset_file ./datasets/jengabowl_demos_test.hdf5 \
@@ -329,20 +259,20 @@ The spawn position is already compensated in the environment config. No action n
 Create a clean USD file with proper root transforms:
 
 ```bash
-cd /home/tshiamo/simulations/franka/isaaclab_cloudxr
+cd $HOME/simulations/franka/isaaclab_cloudxr
 
 # Inspect the USD to see transform issues
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/fix_block_usd.py \
-    /home/tshiamo/WORSPACE_USDS/_36_wood_block_physics.usd
+$HOME/IsaacLab/isaaclab.sh -p scripts/fix_block_usd.py \
+    $HOME/WORSPACE_USDS/_36_wood_block_physics.usd
 
 # Fix the USD (creates _fixed.usd)
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/fix_block_usd.py \
-    /home/tshiamo/WORSPACE_USDS/_36_wood_block_physics.usd \
+$HOME/IsaacLab/isaaclab.sh -p scripts/fix_block_usd.py \
+    $HOME/WORSPACE_USDS/_36_wood_block_physics.usd \
     --fix
 
 # Then update your env config to use the fixed USD
 # Edit: franka_jengabowl_cloudxr_single_env_cfg.py
-# Change: usd_path="/home/tshiamo/WORSPACE_USDS/_36_wood_block_physics_fixed.usd"
+# Change: usd_path="$HOME/WORSPACE_USDS/_36_wood_block_physics_fixed.usd"
 ```
 
 ---
@@ -522,10 +452,9 @@ wrist_camera = CameraCfg(
 ## File Structure
 
 ```
-/home/tshiamo/simulations/franka/isaaclab_cloudxr/
+isaaclab_cloudxr/
 │
 ├── README.md                          # This file
-├── VR_HANDTRACKING_GUIDE.md          # Detailed VR guide
 │
 ├── scripts/
 │   ├── teleop_cloudxr.py             # VR teleoperation script
@@ -533,7 +462,9 @@ wrist_camera = CameraCfg(
 │   ├── fix_block_usd.py              # USD transform fix tool
 │   ├── list_envs.py                  # List available environments
 │   ├── random_agent.py               # Random agent for testing
-│   └── zero_agent.py                 # Zero-action agent
+│   ├── zero_agent.py                 # Zero-action agent
+│   ├── brev_cosmos_augment.sh        # Cloud GPU augmentation script
+│   └── augment_with_cosmos_transfer2.py  # Cosmos-Transfer2.5 augmentation
 │
 ├── source/isaaclab_cloudxr/
 │   └── isaaclab_cloudxr/
@@ -563,113 +494,48 @@ wrist_camera = CameraCfg(
 
 ```bash
 # VR hand tracking teleoperation (RECOMMENDED)
-/home/tshiamo/IsaacLab/isaaclab.sh -p \
-    /home/tshiamo/IsaacLab/scripts/environments/teleoperation/teleop_se3_agent.py \
+$HOME/IsaacLab/isaaclab.sh -p \
+    $HOME/IsaacLab/scripts/environments/teleoperation/teleop_se3_agent.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device handtracking
 
 # Keyboard teleoperation (testing)
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
+$HOME/IsaacLab/isaaclab.sh -p scripts/teleop_cloudxr.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device keyboard
 
 # Record 50 VR demos (RECOMMENDED)
-/home/tshiamo/IsaacLab/isaaclab.sh -p \
-    /home/tshiamo/IsaacLab/scripts/tools/record_demos.py \
+$HOME/IsaacLab/isaaclab.sh -p \
+    $HOME/IsaacLab/scripts/tools/record_demos.py \
     --task Isaac-Franka-JengaBowl-CloudXR-Single-v0 \
     --teleop_device handtracking \
     --dataset_file ./datasets/jengabowl_demos.hdf5 \
     --num_demos 50
 
 # List environments
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/list_envs.py
+$HOME/IsaacLab/isaaclab.sh -p scripts/list_envs.py
 
 # Inspect USD
-/home/tshiamo/IsaacLab/isaaclab.sh -p scripts/fix_block_usd.py \
-    /home/tshiamo/WORSPACE_USDS/_36_wood_block_physics.usd
+$HOME/IsaacLab/isaaclab.sh -p scripts/fix_block_usd.py \
+    $HOME/WORSPACE_USDS/_36_wood_block_physics.usd
 ```
 
 ### Environment Names
 
-- `Isaac-Franka-JengaBowl-CloudXR-Single-v0` ← **Use for VR**
-- `Isaac-Franka-JengaBowl-CloudXR-v0` ← Multi-robot (4096 envs)
-- `Template-Isaaclab-Cloudxr-v0` ← Template reference
-
----
-
----
-
-## 📖 Documentation Quick Reference
-
-### I want to...
-
-| Task | Guide to Read |
-|------|---------------|
-| **Get started from scratch** | [QUICKSTART.md](QUICKSTART.md) |
-| **Annotate my 49 demos** | [PLAYBACK_AND_ANNOTATION_GUIDE.md](PLAYBACK_AND_ANNOTATION_GUIDE.md) ← **START HERE** |
-| **Understand the complete Mimic workflow** | [ISAACLAB_MIMIC_WORKFLOW.md](ISAACLAB_MIMIC_WORKFLOW.md) |
-| **Record more demos with cameras** | [CAMERA_RECORDING_GUIDE.md](CAMERA_RECORDING_GUIDE.md) |
-| **Setup VR hand tracking** | [VR_HANDTRACKING_GUIDE.md](VR_HANDTRACKING_GUIDE.md) |
-| **Train with RL instead of Mimic** | [RL_QUICKSTART.md](RL_QUICKSTART.md) |
-| **Find common commands** | [QUICK_COMMANDS.md](QUICK_COMMANDS.md) |
-| **Fix VR connection issues** | [VR_HANDTRACKING_FIX.md](VR_HANDTRACKING_FIX.md) |
-| **Fix camera recording issues** | [HDF5_EXPORT_FIX.md](HDF5_EXPORT_FIX.md) |
-| **See all available guides** | [📚 Documentation Index](#-documentation-index) (above) |
+- `Isaac-Franka-JengaBowl-CloudXR-Single-v0` -- Use for VR
+- `Isaac-Franka-JengaBowl-CloudXR-v0` -- Multi-robot (4096 envs)
+- `Template-Isaaclab-Cloudxr-v0` -- Template reference
 
 ---
 
 ## Resources
 
-### Official Documentation
 - **Isaac Lab Documentation**: https://isaac-sim.github.io/IsaacLab/
-- **Isaac Lab Mimic**: https://isaac-sim.github.io/IsaacLab/release/2.3.0/source/overview/imitation-learning/teleop_imitation.html
 - **Isaac Lab GitHub**: https://github.com/isaac-sim/IsaacLab
-- **OpenXR Specification**: https://www.khronos.org/openxr/
 - **Cloud XR SDK**: https://docs.nvidia.com/cloudxr/
-
-### Project Documentation
-- **[Complete Documentation Index](#-documentation-index)** - All guides organized by category
-- **[Quick Reference](#-documentation-quick-reference)** - Find the right guide for your task
-
----
-
-## Current Status
-
-✅ **Data Collection**: 49 high-quality demonstrations (2.8 GB)
-🔄 **Annotation**: Ready to annotate with Isaac Lab Mimic
-⏳ **Augmentation**: Next step - generate 650-820 augmented demos
-⏳ **Training**: Vision-based policy training with robomimic
-⏳ **Deployment**: Expected 75-86% success rate
-
-**Next Action**: [Annotate your demos](PLAYBACK_AND_ANNOTATION_GUIDE.md) → Start the Mimic workflow!
-
----
-
-## Contributing
-
-This is an external Isaac Lab project. To contribute:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
 
 ---
 
 ## License
 
 This project follows Isaac Lab's license: BSD-3-Clause
-
----
-
-## Support
-
-For issues or questions:
-- **Project Documentation**: See [📚 Documentation Index](#-documentation-index) above
-- **Isaac Lab GitHub Issues**: https://github.com/isaac-sim/IsaacLab/issues
-- **Isaac Lab Forums**: https://forums.developer.nvidia.com/c/omniverse/simulation/69
-
----
-
-**🚀 Ready to train a vision-based policy? [Start annotating your demos!](PLAYBACK_AND_ANNOTATION_GUIDE.md)**
